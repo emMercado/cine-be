@@ -3,6 +3,9 @@ dotenv.config(); */
 import express from "express";
 import './util/secrets.js'
 import { movieRoute } from './routes/movieRoutes.js'
+import { protagonistRoute } from './routes/protagonistRoutes.js'
+import { genreRoute } from './routes/genreRoutes.js'
+import { languageRoute } from './routes/languageRoutes.js'
 
 const app = express();
 
@@ -13,7 +16,10 @@ app.get("/", (req, res) => {
 });
 
 //Routes
-app.use("/movie/", movieRoute);
+app.use("/api/movie/", movieRoute);
+app.use("/api/protagonist/", protagonistRoute);
+app.use("/api/genre/", genreRoute);
+app.use("/api/language/", languageRoute);
 
 //Welcome
 app.get("/", (req, res) => {
