@@ -10,12 +10,12 @@ import {
 export const genreRoute = express.Router();
 
 // GET /genre
-genreRoute.get("/", (req, res) => getGenres(req, res));
+genreRoute.get("/", getGenres);
 // GET /genre/:id
-genreRoute.get("/:id", (req, res) => getGenreById(req, res));
+genreRoute.get("/:id", getGenreById);
 // POST /genre
-genreRoute.post("/registerGenre", (req, res) => registerGenre(req, res));
+genreRoute.post("/registerGenre", registerGenre);
 // PUT /genre/:id
-genreRoute.put("/:id", (req, res) => updateGenre(req, res));
+genreRoute.put("/:id", updateGenre);
 // DELETE /genre/:id
-genreRoute.delete("/:id", (req, res) => deleteGenre(req, res));
+genreRoute.delete("/:id", deleteGenre);

@@ -10,12 +10,12 @@ import {
 export const languageRoute = express.Router();
 
 // GET /language
-languageRoute.get("/", (req, res) => getLanguages(req, res));
+languageRoute.get("/", getLanguages);
 // GET /language/:id
-languageRoute.get("/:id", (req, res) => getLanguageById(req, res));
+languageRoute.get("/:id", getLanguageById);
 // POST /language
-languageRoute.post("/registerLanguage", (req, res) => registerLanguage(req, res));
+languageRoute.post("/registerLanguage", registerLanguage);
 // PUT /language/:id
-languageRoute.put("/:id", (req, res) => updateLanguage(req, res));
+languageRoute.put("/:id", updateLanguage);
 // DELETE /language/:id
-languageRoute.delete("/:id", (req, res) => deleteLanguage(req, res));
+languageRoute.delete("/:id", deleteLanguage);

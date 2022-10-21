@@ -10,12 +10,12 @@ import {
 export const movieRoute = express.Router();
 
 // GET /movie
-movieRoute.get("/", (req, res) => getMovies(req, res));
+movieRoute.get("/", getMovies);
 // GET /movie/:id
-movieRoute.get("/:id", (req, res) => getMovieById(req, res));
+movieRoute.get("/:id", getMovieById);
 // POST /movie
-movieRoute.post("/registerMovie", (req, res) => registerMovie(req, res));
+movieRoute.post("/registerMovie", registerMovie);
 // PUT /movie/:id
-movieRoute.put("/:id", (req, res) => updateMovie(req, res));
+movieRoute.put("/:id", updateMovie);
 // DELETE /movie/:id
-movieRoute.delete("/:id", (req, res) => deleteMovie(req, res));
+movieRoute.delete("/:id", deleteMovie);

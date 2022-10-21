@@ -10,12 +10,12 @@ import {
 export const protagonistRoute = express.Router();
 
 // GET /protagonist
-protagonistRoute.get("/", (req, res) => getProtagonists(req, res));
+protagonistRoute.get("/", getProtagonists);
 // GET /protagonist/:id
-protagonistRoute.get("/:id", (req, res) => getProtagonistById(req, res));
+protagonistRoute.get("/:id", getProtagonistById);
 // POST /protagonist
-protagonistRoute.post("/registerProtagonist", (req, res) => registerProtagonist(req, res));
+protagonistRoute.post("/registerProtagonist", registerProtagonist);
 // PUT /protagonist/:id
-protagonistRoute.put("/:id", (req, res) => updateProtagonist(req, res));
+protagonistRoute.put("/:id", updateProtagonist);
 // DELETE /protagonist/:id
-protagonistRoute.delete("/:id", (req, res) => deleteProtagonist(req, res));
+protagonistRoute.delete("/:id", deleteProtagonist);
