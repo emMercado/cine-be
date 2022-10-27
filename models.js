@@ -33,14 +33,35 @@ const Language = {
 const Room = {
     "_id": ObjectId,
     "number": Number,
-    "schedule": [{ type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' }]
+    /* "schedule": [
+        { type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' }
+        {
+            movie: { type: mongoose.Schema.Types.ObjectId, ref: 'Movie' },
+            date: Date, //lunes 3 de octubre de 2022
+            date_time: Date, //21:00
+            tickets: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }]
+        }
+    ], */
 }
+
 
 const Schedule = {
     "_id": ObjectId,
-    "idMovie": ObjectId,
+    "movie": { type: mongoose.Schema.Types.ObjectId, ref: 'Movie' },
     "date": Date, //lunes 3 de octubre de 2022
     "date_time": Date, //21:00
+    "room": { type: mongoose.Schema.Types.ObjectId, ref: 'Room' },
+    /*  "tickets": [{ type: mongoose.Schema.Types.ObjectId, ref: 'Ticket' }] */
+}
+
+const Ticket = {
+    "_id": ObjectId,
+    "schedule": { type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' },
+    "position": { row: String, col: Number },
+    "seller": { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    "pay_method": String,
+    "price": Number,
+    "date": Date,
 }
 
 const User = {
