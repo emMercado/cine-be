@@ -76,5 +76,5 @@ const User = {
 
 const Role = {
     "_id": ObjectId,
-    "name": String,
+    "name": String, // ADMIN // EMPLOYER 
 }
