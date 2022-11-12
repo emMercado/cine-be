@@ -3,6 +3,13 @@ dotenv.config(); */
 import express from "express";
 import './util/secrets.js'
 import { movieRoute } from './routes/movieRoutes.js'
+import { protagonistRoute } from './routes/protagonistRoutes.js'
+import { genreRoute } from './routes/genreRoutes.js'
+import { languageRoute } from './routes/languageRoutes.js'
+import { roomRoute } from './routes/roomRoutes.js'
+import { scheduleRoute } from './routes/scheduleRoutes.js'
+import { ticketRoute } from './routes/ticketRoutes.js'
+/* import { chargePoints } from './positions.js' */
 
 const app = express();
 
@@ -13,7 +20,15 @@ app.get("/", (req, res) => {
 });
 
 //Routes
-app.use("/movie/", movieRoute);
+app.use("/api/movie/", movieRoute);
+app.use("/api/protagonist/", protagonistRoute);
+app.use("/api/genre/", genreRoute);
+app.use("/api/language/", languageRoute);
+app.use("/api/room/", roomRoute);
+app.use("/api/schedule/", scheduleRoute);
+app.use("/api/ticket/", ticketRoute);
+
+/* chargePoints(); */
 
 //Welcome
 app.get("/", (req, res) => {
@@ -29,3 +44,4 @@ app.listen(PORT, () => {
         console.error("Fail server run", error);
     }
 });
+
