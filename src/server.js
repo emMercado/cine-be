@@ -2,6 +2,7 @@
 dotenv.config(); */
 import express from "express";
 import './util/secrets.js'
+import cors from "cors"
 import { movieRoute } from './routes/movieRoutes.js'
 import { protagonistRoute } from './routes/protagonistRoutes.js'
 import { genreRoute } from './routes/genreRoutes.js'
@@ -13,6 +14,7 @@ import { ticketRoute } from './routes/ticketRoutes.js'
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {

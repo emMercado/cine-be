@@ -4,6 +4,7 @@ export const getGenres = async (req, res) => {
     try {
         const genres = await Genre.find({})
 
+        console.info("Consulta generos")
         return res.json({ status: res.status, data: genres });
     } catch (error) {
         console.error(error);
@@ -14,7 +15,7 @@ export const registerGenre = async (req, res) => {
     try {
         const { body } = req
         const newGenre = await Genre.create(body);
-        
+        console.info("Se registro nuevo genero")
         return res.json({ status: res.status, data: newGenre });
     } catch (error) {
         console.error(error);
