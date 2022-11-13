@@ -15,4 +15,6 @@ const userSchema = mongoose.Schema({
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
 
-export default model("Ticket", userSchema);
+
+
+export default model("User", userSchema);

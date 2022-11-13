@@ -1,37 +1,37 @@
-import Ticket from "../models/Ticket.js";
+import User from "../models/User";
 
-export const getTickets = async (req, res) => {
+export const getUsers = async (req, res) => {
     try {
         //const tickets = await Ticket.find({}).populate("schedule")
-        const tickets = await Ticket.find({}).populate({
+        const user = await User.find({}).populate({
             path: 'schedule',
             populate: {
-                path: 'movie',
-                model: 'Movie'
+                path: 'role',
+                
             }
         })
 
-        return res.json({ status: res.status, data: tickets });
+        return res.json({ status: res.status, data: user });
     } catch (error) {
         console.error(error);
     }
 };
 
-export const registerTicket = async (req, res) => {
+export const registerUser = async (req, res) => {
     try {
         const { body } = req
-        const newTicket = await Ticket.create(body);
+        const newUser = await User.create(body);
 
-        return res.json({ status: res.status, data: newTicket });
+        return res.json({ status: res.status, data: newUser });
     } catch (error) {
         console.error(error);
     }
 };
 
-export const getTicketById = async (req, res) => {
+export const getUserById = async (req, res) => {
     try {
         const { id: _id } = req.params
-        const ticket = await Ticket.findOne({ _id })
+        const user = await User.findOne({ _id })
 
         return res.json({ status: res.status, data: ticket });
     } catch (error) {
@@ -39,28 +39,28 @@ export const getTicketById = async (req, res) => {
     }
 };
 
-export const updateTicket = async (req, res) => {
+export const updateUser = async (req, res) => {
     try {
         const filter = { _id: req.params.id };
         const query = { $set: req.body }
 
-        const ticket = await Ticket.updateOne(filter, query);
+        const user = await User.updateOne(filter, query);
 
-        return res.json({ status: res.status, data: ticket });
+        return res.json({ status: res.status, data: user });
     } catch (error) {
-        res.status(500).send("Error al modificar ticket" + error)
+        res.status(500).send("Error al modificar al usuario" + error)
         console.error(error);
     }
 };
 
-export const deleteTicket = async (req, res) => {
+export const deleteUser = async (req, res) => {
     try {
         const { id: _id } = req.params
-        await Ticket.deleteOne({ _id });
+        await User.deleteOne({ _id });
 
         return res.json({ status: res.status });
     } catch (error) {
-        res.status(500).send("Error al eliminar ticket" + error)
+        res.status(500).send("Error al eliminar al usuario" + error)
         console.error(error);
     }
 };
