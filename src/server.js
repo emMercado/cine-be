@@ -10,7 +10,8 @@ import { languageRoute } from './routes/languageRoutes.js'
 import { roomRoute } from './routes/roomRoutes.js'
 import { scheduleRoute } from './routes/scheduleRoutes.js'
 import { ticketRoute } from './routes/ticketRoutes.js'
-/* import { chargePoints } from './positions.js' */
+import { chargePoints } from "./util/positions.helper.js";
+
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use("/api/room/", roomRoute);
 app.use("/api/schedule/", scheduleRoute);
 app.use("/api/ticket/", ticketRoute);
 
-/* chargePoints(); */
+chargePoints();
 
 //Welcome
 app.get("/", (req, res) => {

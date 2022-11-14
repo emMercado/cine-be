@@ -7,7 +7,7 @@ import mongoose, { model } from 'mongoose'
 */
 
 const ticketSchema = mongoose.Schema({
-    /* room: { type: mongoose.Schema.Types.ObjectId, ref: 'Room' }, */
+    //room: { type: mongoose.Schema.Types.ObjectId, ref: 'Room' },
     schedule: { type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' },
     position: { row: { type: String }, col: { type: Number } },
     seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
