@@ -10,8 +10,8 @@ import { languageRoute } from './routes/languageRoutes.js'
 import { roomRoute } from './routes/roomRoutes.js'
 import { scheduleRoute } from './routes/scheduleRoutes.js'
 import { ticketRoute } from './routes/ticketRoutes.js'
-/* import { chargePoints } from './positions.js' */
-
+//import { chargePoints } from './positions.js'
+import{userRoute} from './routes/userRoutes.js'
 const app = express();
 
 app.use(cors());
@@ -31,7 +31,7 @@ app.use("/api/schedule/", scheduleRoute);
 app.use("/api/ticket/", ticketRoute);
 app.use("/api/user/", userRoute);
 
-chargePoints();
+//chargePoints();
 
 //Welcome
 app.get("/", (req, res) => {

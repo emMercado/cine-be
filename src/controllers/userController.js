@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../models/User.js";
 
 export const getUsers = async (req, res) => {
     try {
@@ -21,6 +21,7 @@ export const registerUser = async (req, res) => {
     try {
         const { body } = req
         const newUser = await User.create(body);
+        console.log(body)
 
         return res.json({ status: res.status, data: newUser });
     } catch (error) {
