@@ -9,6 +9,7 @@ export const login = async (req, res) => {
     username: req.body.username,
   });
   if (!account) {
+    console.error("Usuario o contraseña inválida");
     res.send("Usuario o contraseña inválida");
     return;
   }

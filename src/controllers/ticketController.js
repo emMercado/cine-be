@@ -41,7 +41,7 @@ export const registerTicket = async (req, res) => {
       }
     );
     
-    console.info("Boleto vendido", modifc);
+    console.info("Boleto vendido");
     return res.json({ status: res.status, data: newTicket });
   } catch (error) {
     console.error(error);

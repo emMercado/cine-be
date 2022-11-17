@@ -1,9 +1,9 @@
 import mongoose, { model } from "mongoose";
 
 const scheduleSchema = mongoose.Schema({
-  movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie" },
-  date: { type: Date },
-  room: { type: mongoose.Schema.Types.ObjectId, ref: "Room" },
+  movie: { type: mongoose.Schema.Types.ObjectId, ref: "Movie", required: true },
+  date: { type: Date, required: true },
+  room: { type: mongoose.Schema.Types.ObjectId, ref: "Room", required: true },
   positions: [
     { row: { type: String }, col: { type: Number }, busy: { type: Boolean } },
   ],

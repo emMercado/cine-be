@@ -1,8 +1,7 @@
-import mongoose, { model } from 'mongoose'
+import mongoose, { model } from "mongoose";
 
 const roomSchema = mongoose.Schema({
-    number: { type: Number, required: false },
-    //schedule: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Schedule' }],
-})
+  number: { type: Number, required: true },
+});
 
 export default model("Room", roomSchema);
