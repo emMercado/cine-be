@@ -17,6 +17,10 @@ export const registerGenre = async (req, res) => {
     const { body } = req;
     const newGenre = await Genre.create(body);
 
+    if (!newGenre) {
+      throw new Error("No se pudo registrar");
+    }
+
     console.info("Genero creado con exito");
     return res.json({ status: res.status, data: newGenre });
   } catch (error) {
@@ -41,7 +45,7 @@ export const updateGenre = async (req, res) => {
     const query = { $set: req.body };
 
     const genre = await Genre.updateOne(filter, query);
-    
+
     return res.json({ status: res.status, data: genre });
   } catch (error) {
     res.status(500).send("Error al modificar genero" + error);
@@ -55,11 +59,11 @@ export const deleteGenre = async (req, res) => {
 
     const genreInMovie = await Movie.find({ genres: { $in: [_id] } });
 
-    if (genreInMovie.length) {
+    /* if (genreInMovie.length) {
       throw new Error(
         "No se pudo eliminar por estar vinculado con una pelicula"
       );
-    }
+    } */
 
     const deleteGenre = await Genre.deleteOne({ _id });
 
