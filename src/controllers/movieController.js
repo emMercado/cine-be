@@ -5,7 +5,7 @@ export const getMovies = async (_, res) => {
         const movies = await Movie.find({})
             .populate("genres")
             .populate("protagonists")
-            .populate("language");
+            .populate("languages");
 
         return res.json({ status: res.status, data: movies });
     } catch (error) {

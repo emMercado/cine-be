@@ -1,66 +1,65 @@
-import Ticket from "../models/Ticket.js";
+import User from "../models/User.js";
+import bcrypt from "bcryptjs";
 
-export const getTickets = async (req, res) => {
-    try {
-        //const tickets = await Ticket.find({}).populate("schedule")
-        const tickets = await Ticket.find({}).populate({
-            path: 'schedule',
-            populate: {
-                path: 'movie',
-                model: 'Movie'
-            }
-        })
+export const getUsers = async (_, res) => {
+  try {
+    const users = await User.find({}).populate("role");
 
-        return res.json({ status: res.status, data: tickets });
-    } catch (error) {
-        console.error(error);
-    }
+    return res.json({ status: res.status, data: users });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const registerTicket = async (req, res) => {
-    try {
-        const { body } = req
-        const newTicket = await Ticket.create(body);
+export const registerUser = async (req, res) => {
+  try {
+    const { body } = req;
+    const passwordHashed = await bcrypt.hash(body.password, 8);
 
-        return res.json({ status: res.status, data: newTicket });
-    } catch (error) {
-        console.error(error);
-    }
+    body.password = passwordHashed;
+    body.date = new Date();
+
+    const newUser = await User.create(body);
+
+    return res.json({ status: res.status, data: newUser });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const getTicketById = async (req, res) => {
-    try {
-        const { id: _id } = req.params
-        const ticket = await Ticket.findOne({ _id })
+export const getUserById = async (req, res) => {
+  try {
+    const { id: _id } = req.params;
+    const user = await User.findOne({ _id });
 
-        return res.json({ status: res.status, data: ticket });
-    } catch (error) {
-        console.error(error);
-    }
+    return res.json({ status: res.status, data: user });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-export const updateTicket = async (req, res) => {
-    try {
-        const filter = { _id: req.params.id };
-        const query = { $set: req.body }
+export const updateUser = async (req, res) => {
+  try {
+    const filter = { _id: req.params.id };
+    const query = { $set: req.body };
 
-        const ticket = await Ticket.updateOne(filter, query);
+    const user = await User.updateOne(filter, query);
 
-        return res.json({ status: res.status, data: ticket });
-    } catch (error) {
-        res.status(500).send("Error al modificar ticket" + error)
-        console.error(error);
-    }
+    return res.json({ status: res.status, data: user });
+  } catch (error) {
+    res.status(500).send("Error al modificar user" + error);
+    console.error(error);
+  }
 };
 
-export const deleteTicket = async (req, res) => {
-    try {
-        const { id: _id } = req.params
-        await Ticket.deleteOne({ _id });
+export const deleteUser = async (req, res) => {
+  try {
+    const { id: _id } = req.params;
+    await User.deleteOne({ _id });
 
-        return res.json({ status: res.status });
-    } catch (error) {
-        res.status(500).send("Error al eliminar ticket" + error)
-        console.error(error);
-    }
+    return res.json({ status: res.status });
+  } catch (error) {
+    res.status(500).send("Error al eliminar user" + error);
+    console.error(error);
+  }
 };

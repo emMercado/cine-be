@@ -1,10 +1,11 @@
 import express from "express";
 import {
-    getTickets,
-    registerTicket,
-    deleteTicket,
-    getTicketById,
-    updateTicket,
+  getTickets,
+  registerTicket,
+  deleteTicket,
+  getTicketById,
+  updateTicket,
+  deleteAllTickets,
 } from "../controllers/ticketController.js";
 
 export const ticketRoute = express.Router();
@@ -19,3 +20,5 @@ ticketRoute.post("/registerTicket", registerTicket);
 ticketRoute.put("/:id", updateTicket);
 // DELETE /ticket/:id
 ticketRoute.delete("/:id", deleteTicket);
+
+ticketRoute.delete("/clean", deleteAllTickets);

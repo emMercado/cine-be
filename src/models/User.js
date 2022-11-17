@@ -1,18 +1,12 @@
 import mongoose, { model } from "mongoose";
 
-/*En schedule tenemos 
-    room: numero sala
-    movie: pelicula
-    horario
-*/
-
 const userSchema = mongoose.Schema({
-  name: String,
-  username: String,
-  email: String,
-  password: String,
-  date: String,
+  name: { type: String },
+  username: { type: String },
+  email: { type: String },
+  password: { type: String },
+  date: { type: Date },
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
 
-export default model("Ticket", userSchema);
+export default model("User", userSchema);
