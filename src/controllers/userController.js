@@ -1,7 +1,7 @@
 import User from "../models/User.js";
 import bcrypt from "bcryptjs";
 
-export const getUsers = async (req, res) => {
+export const getUsers = async (_, res) => {
   try {
     const users = await User.find({}).populate("role");
 

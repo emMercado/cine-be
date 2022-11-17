@@ -11,12 +11,12 @@ import { roomRoute } from "./routes/roomRoutes.js";
 import { scheduleRoute } from "./routes/scheduleRoutes.js";
 import { ticketRoute } from "./routes/ticketRoutes.js";
 import { authRouter } from "./routes/authRoutes.js";
-import { userRoute } from "./routes/userRoute.js";
-/* import { chargePoints } from "./util/positions.helper.js"; */
+import { userRoute } from "./routes/userRoutes.js";
 
 const app = express();
 
 import "./auth/auth.js";
+import { roleRoute } from "./routes/roleRoutes.js";
 
 app.use(cors());
 app.use(express.json());
@@ -35,6 +35,7 @@ app.use("/api/room/", roomRoute);
 app.use("/api/schedule/", scheduleRoute);
 app.use("/api/ticket/", ticketRoute);
 app.use("/api/user/", userRoute);
+app.use("/api/role/", roleRoute);
 
 /* chargePoints(); */
 
