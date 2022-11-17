@@ -25,23 +25,24 @@ export const registerTicket = async (req, res) => {
 
     const newTicket = await Ticket.create(body);
 
-    await Schedule.updateOne(
+    const modifc = await Schedule.updateOne(
       {
         _id: body.schedule,
-        "positions.row": body.position.row,
-        "positions.col": body.position.col,
-        "positions.busy": false,
+        positions: {
+          $elemMatch: {
+            row: body.position.row,
+            col: body.position.col,
+            busy: false,
+          },
+        },
       },
       {
         $set: { "positions.$.busy": true },
       }
     );
-
+    
+    console.info("Boleto vendido", modifc);
     return res.json({ status: res.status, data: newTicket });
-    return res.json({
-      status: res.status,
-      data: "se creo el ticket con exito",
-    });
   } catch (error) {
     console.error(error);
   }
