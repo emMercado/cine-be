@@ -22,7 +22,7 @@ export const registerSchedule = async (req, res) => {
 
     const newSchedule = await Schedule.create(body);
 
-    console.info("Se registro un nuevo horario");
+    console.info("Horario creado con exito");
     return res.json({ status: res.status, data: newSchedule });
   } catch (error) {
     console.error(error);
@@ -50,6 +50,7 @@ export const updateSchedule = async (req, res) => {
 
     const schedule = await Schedule.updateOne(filter, query);
 
+    console.info("Horario actualizado con exito");
     return res.json({ status: res.status, data: schedule });
   } catch (error) {
     res.status(500).send("Error al modificar schedule" + error);
@@ -60,8 +61,20 @@ export const updateSchedule = async (req, res) => {
 export const deleteSchedule = async (req, res) => {
   try {
     const { id: _id } = req.params;
-    await Schedule.deleteOne({ _id });
 
+    const scheduleInTicket = await Ticket.find({ schedule: { $in: [_id] } });
+
+    if (scheduleInTicket.length) {
+      throw new Error("No se pudo eliminar por estar vinculado con tickets");
+    }
+
+    const deleteSchedule = await Schedule.deleteOne({ _id });
+
+    if (!deleteSchedule) {
+      return;
+    }
+
+    console.info("Horario eliminado con exito");
     return res.json({ status: res.status });
   } catch (error) {
     res.status(500).send("Error al eliminar schedule" + error);
