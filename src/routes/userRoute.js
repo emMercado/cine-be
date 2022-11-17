@@ -1,21 +1,21 @@
 import express from "express";
 import {
-    getTickets,
-    registerTicket,
-    deleteTicket,
-    getTicketById,
-    updateTicket,
+  getUsers,
+  registerUser,
+  deleteUser,
+  getUserById,
+  updateUser,
 } from "../controllers/userController.js";
 
 export const userRoute = express.Router();
 
 // GET /user
-userRoute.get("/", getTickets);
+userRoute.get("/", getUsers);
 // GET /user/:id
-userRoute.get("/:id", getTicketById);
+userRoute.get("/:id", getUserById);
 // POST /user
-userRoute.post("/registerTicket", registerTicket);
+userRoute.post("/registerUser", registerUser);
 // PUT /user/:id
-userRoute.put("/:id", updateTicket);
+userRoute.put("/:id", updateUser);
 // DELETE /user/:id
-userRoute.delete("/:id", deleteTicket);
+userRoute.delete("/:id", deleteUser);
