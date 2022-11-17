@@ -23,30 +23,6 @@ export const registerTicket = async (req, res) => {
   try {
     const { body } = req;
 
-    /* console.log(body); */
-
-    /*  body.position.forEach(async (position) => {
-      const newBody = {
-        schedule: body.schedule,
-        position,
-        pay_method: body.pay_method,
-      };
-
-      await Schedule.updateOne(
-        {
-          _id: body.schedule,
-          "positions.row": position.row,
-          "positions.col": position.col,
-          "positions.busy": false,
-        },
-        {
-          $set: { "positions.$.busy": true },
-        }
-      );
-
-      await Ticket.create(newBody);
-    }); */
-
     const newTicket = await Ticket.create(body);
 
     await Schedule.updateOne(
@@ -100,6 +76,17 @@ export const deleteTicket = async (req, res) => {
   try {
     const { id: _id } = req.params;
     await Ticket.deleteOne({ _id });
+
+    return res.json({ status: res.status });
+  } catch (error) {
+    res.status(500).send("Error al eliminar ticket" + error);
+    console.error(error);
+  }
+};
+
+export const deleteAllTickets = async (req, res) => {
+  try {
+    await Ticket.deleteMany();
 
     return res.json({ status: res.status });
   } catch (error) {
